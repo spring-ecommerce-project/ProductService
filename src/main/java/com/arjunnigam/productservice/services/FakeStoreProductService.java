@@ -1,5 +1,6 @@
 package com.arjunnigam.productservice.services;
 
+import com.arjunnigam.productservice.exceptions.ProductNotFoundException;
 import com.arjunnigam.productservice.models.Category;
 import com.arjunnigam.productservice.models.Product;
 import dtos.FakeStoreProductDto;
@@ -22,7 +23,7 @@ public class FakeStoreProductService implements ProductService{
     @Override
     public List<Product> getAllProducts() {
 
-        // TODO: HW
+
         ResponseEntity<FakeStoreProductDto[]> listResponseEntity = restTemplate.getForEntity("https://fakestoreapi.com/products",
                                                                                                    FakeStoreProductDto[].class);
         FakeStoreProductDto[] fakeStoreProductDtoList = listResponseEntity.getBody();
@@ -35,7 +36,7 @@ public class FakeStoreProductService implements ProductService{
     }
 
     @Override
-    public Product getSingleProduct(Long productId) {
+    public Product getSingleProduct(Long productId) throws ProductNotFoundException {
         // make an HTTP call to fakestore api to get the product with the given ID.
         // https://fakestoreapi/cim/products/1
         //  RestTemplate restTemplate = new RestTemplate();
@@ -45,6 +46,11 @@ public class FakeStoreProductService implements ProductService{
                         FakeStoreProductDto.class
                 ); // Whatever response you will get from this url, capture that response into object of FakeStoreProductDto type. .class just represents the type of the object
 
+                FakeStoreProductDto fakeStoreProductDto = responseEntity.getBody();
+                if(fakeStoreProductDto == null)
+                {
+                    throw new ProductNotFoundException(productId);
+                }
                 return convertFakeStoreProductDtoToProduct(responseEntity.getBody());
 
 

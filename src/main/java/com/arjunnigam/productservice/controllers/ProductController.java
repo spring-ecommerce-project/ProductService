@@ -1,8 +1,11 @@
 package com.arjunnigam.productservice.controllers;
 import java.util.*;
 
+import com.arjunnigam.productservice.exceptions.ProductNotFoundException;
 import com.arjunnigam.productservice.models.Product;
 import com.arjunnigam.productservice.services.ProductService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,9 +24,8 @@ public class ProductController {
     }
     // loclhost:8080/products/1
     @GetMapping("/{productId}")
-    public Product getSingleProduct(@PathVariable("productId") Long productId)
-    {
-        return productService.getSingleProduct(productId);
+    public Product getSingleProduct(@PathVariable("productId") Long productId) throws ProductNotFoundException {
+       return productService.getSingleProduct(productId);
     }
 
 
