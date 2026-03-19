@@ -1,4 +1,4 @@
-package dtos;
+package com.arjunnigam.productservice.dtos;
 
 import com.arjunnigam.productservice.models.Category;
 import lombok.Getter;

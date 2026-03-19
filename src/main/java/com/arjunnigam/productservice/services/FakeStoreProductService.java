@@ -3,9 +3,8 @@ package com.arjunnigam.productservice.services;
 import com.arjunnigam.productservice.exceptions.ProductNotFoundException;
 import com.arjunnigam.productservice.models.Category;
 import com.arjunnigam.productservice.models.Product;
-import dtos.FakeStoreProductDto;
+import com.arjunnigam.productservice.dtos.FakeStoreProductDto;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 

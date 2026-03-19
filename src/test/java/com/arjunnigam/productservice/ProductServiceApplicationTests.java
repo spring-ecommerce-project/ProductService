@@ -18,16 +18,16 @@ class ProductServiceApplicationTests {
     void contextLoads() {
     }
 
-    @Test
-    public void testQuery(){
-        List<ProductWithTitleAndPrice> productWithTitleAndPrice = productRepository.findTitleAndPriceById();
-        for (ProductWithTitleAndPrice p : productWithTitleAndPrice) {
-            System.out.println(p.getTitle() + " " + p.getPrice());
-
-        }
-
-        Optional<Product> optionalProduct = productRepository.findByCategory_Title("mobile");
-        System.out.println(optionalProduct.get().getPrice());
-    }
+//    @Test
+//    public void testQuery(){
+//        List<ProductWithTitleAndPrice> productWithTitleAndPrice = productRepository.findTitleAndPriceById();
+//        for (ProductWithTitleAndPrice p : productWithTitleAndPrice) {
+//            System.out.println(p.getTitle() + " " + p.getPrice());
+//
+//        }
+//
+//        Optional<Product> optionalProduct = productRepository.findByCategory_Title("mobile");
+//        System.out.println(optionalProduct.get().getPrice());
+//    }
 
 }

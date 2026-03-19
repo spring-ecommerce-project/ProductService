@@ -14,7 +14,7 @@ import java.util.Optional;
 // This class interacts with our own database
 
 @Service("selfProductService") // Name of the bean is selfProductService
-//@Primary
+@Primary
 public class SelfProductService implements ProductService{
 
     private ProductRepository productRepository;
