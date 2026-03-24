@@ -3,6 +3,8 @@ package com.arjunnigam.productservice.repositories;
 import com.arjunnigam.productservice.models.Category;
 import com.arjunnigam.productservice.models.Product;
 import com.arjunnigam.productservice.projections.ProductWithTitleAndPrice;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -26,13 +28,13 @@ public interface ProductRepository extends JpaRepository<Product, Long > {
     
     
     // select * from products where title = ?
-    Optional<Product> findByTitle(String title);
+    List<Product> findByTitle(String title);
     
-    // select * from products where title LIKE '%str%'
-    Optional<Product> findByTitleContains(String title);
+    // select * from products where title LIKE '%iPhone%'
+    List<Product> findByTitleContains(String str, Pageable pageable);   // By Passing Pageable, by default we will get Paginated responses. This is a functionality that JPA automatically provides us
 
     //select * from products where title LIKE '%str%'
-    Optional<Product> findByTitleContainsIgnoreCase(String title);
+    Page<Product> findByTitleContainsIgnoreCase(String str, Pageable pageable);
 
     //select * from products where price >= start and price <= end
     Optional<Product> findByPriceBetween(Double start, Double end);

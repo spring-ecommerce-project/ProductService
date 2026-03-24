@@ -6,7 +6,11 @@ import com.arjunnigam.productservice.models.Product;
 import com.arjunnigam.productservice.repositories.CategoryRepository;
 import com.arjunnigam.productservice.repositories.ProductRepository;
 import org.springframework.context.annotation.Primary;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+
 
 import java.util.List;
 import java.util.Optional;
@@ -68,5 +72,12 @@ public class SelfProductService implements ProductService{
     @Override
     public Product replaceProduct(Long productId, Product product) {
         return null;
+    }
+
+    @Override
+    public Page<Product> getProductsByTitle(String title, int pageNumber, int pageSize) {
+        Sort sort = Sort.by(Sort.Direction.DESC, "price").and(Sort.by(Sort.Direction.ASC, "title"));
+        PageRequest pageRequest = PageRequest.of(pageNumber, pageSize,  sort);
+        return productRepository.findByTitleContainsIgnoreCase(title, pageRequest);
     }
 }

@@ -6,6 +6,7 @@ import com.arjunnigam.productservice.exceptions.ProductNotFoundException;
 import com.arjunnigam.productservice.models.Product;
 import com.arjunnigam.productservice.services.ProductService;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -62,6 +63,14 @@ public class ProductController {
     public Product replaceProduct(@PathVariable("id") Long productId, @RequestBody Product product)
     {
         return null;
+    }
+
+
+    // http://localhost:8080/products/title/iphone
+    @GetMapping("/title/{title}/{pageNumber}/{pageSize}")
+    public Page<Product> getProductsByTitle(@PathVariable("title") String title, @PathVariable("pageNumber") int pageNumber, @PathVariable("pageSize") int pageSize)
+    {
+        return productService.getProductsByTitle(title,pageNumber,pageSize);
     }
 
 

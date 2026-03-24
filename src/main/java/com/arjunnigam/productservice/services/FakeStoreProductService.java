@@ -4,12 +4,16 @@ import com.arjunnigam.productservice.exceptions.ProductNotFoundException;
 import com.arjunnigam.productservice.models.Category;
 import com.arjunnigam.productservice.models.Product;
 import com.arjunnigam.productservice.dtos.FakeStoreProductDto;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.data.domain.Pageable;
+
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service("fakeStoreProductService")  // Name of the bean is fakeStoreProductService
 public class FakeStoreProductService implements ProductService{
@@ -82,6 +86,11 @@ public class FakeStoreProductService implements ProductService{
 
     @Override
     public Product replaceProduct(Long productId, Product product) {
+        return null;
+    }
+
+    @Override
+    public Page<Product> getProductsByTitle(String title, int pageNumber, int pageSize) {
         return null;
     }
 }
