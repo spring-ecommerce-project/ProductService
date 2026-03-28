@@ -25,7 +25,7 @@ public class RandomTests {
         // ASSERT
         //assert result == 10;   // For better outcomes we don't use assert
 
-        assertEquals(10, result);
+        assertEquals(17, result);
 
 //        assertNotEquals(x,y);
 //        assertNull(object);
